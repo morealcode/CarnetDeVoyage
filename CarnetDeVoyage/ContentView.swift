@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  CarnetDeVoyage
 //
-//  Created by apprenant130 on 01/06/2026.
+//  Created by Alexis Morel on 01/06/2026.
 //
 
 import SwiftUI
@@ -10,10 +10,10 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(systemName: "figure.gymnastics")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Alexis")
         }
         .padding()
     }
