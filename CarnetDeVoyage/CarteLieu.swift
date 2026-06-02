@@ -12,6 +12,7 @@ struct Destination: Identifiable {
     var city: String
     var pays: String
     var icon: String
+    var image: String
     var review: Int
     var colorFrom: Color
     var colorTo: Color
@@ -25,6 +26,7 @@ struct CarteLieu: View {
             city: "Lisbonne",
             pays: "Portugal",
             icon: "sun.max.fill",
+            image: "lisbonne",
             review: 5,
             colorFrom: .orange,
             colorTo: .pink,
@@ -34,6 +36,7 @@ struct CarteLieu: View {
             city: "Kyoto",
             pays: "Japon",
             icon: "leaf.fill",
+            image: "kyoto",
             review: 4,
             colorFrom: .green,
             colorTo: .cyan,
@@ -43,6 +46,7 @@ struct CarteLieu: View {
             city: "Paris",
             pays: "France",
             icon: "snowflake",
+            image: "paris",
             review: 3,
             colorFrom: .blue,
             colorTo: .purple,
@@ -52,6 +56,7 @@ struct CarteLieu: View {
             city: "New York",
             pays: "Etats-Unis",
             icon: "star.fill",
+            image: "newyork",
             review: 5,
             colorFrom: .red,
             colorTo: .pink,
@@ -81,7 +86,10 @@ struct CarteLieu: View {
 
                     VStack(alignment: .leading) {
 
-                        Image(systemName: destination.icon)
+//                        Image(systemName: destination.icon)
+                        Image(destination.image)
+                            .resizable()
+                            .scaledToFill()
                             .cardStyle()
                             .background(
                                 LinearGradient(
@@ -142,9 +150,10 @@ struct CarteLieu: View {
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .foregroundStyle(.white)
-            .font(.largeTitle)
-            .frame(height: 140)
+//            .foregroundStyle(.white)
+//            .font(.largeTitle)
+            .frame(height: 140, alignment: .center)
+            .clipped()
             .frame(maxWidth: .infinity)
     }
 }
