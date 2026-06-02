@@ -144,6 +144,7 @@ struct CarteLieu: View {
                 }
             }
         }
+        .scrollIndicators(.hidden)
     }
 }
 
