@@ -17,6 +17,7 @@ struct Destination: Identifiable {
     var colorFrom: Color
     var colorTo: Color
     var isVisited: Bool
+    var isDeleted: Bool
 
     static let examples = [
         Destination(
@@ -27,7 +28,8 @@ struct Destination: Identifiable {
             review: 5,
             colorFrom: .orange,
             colorTo: .pink,
-            isVisited: true
+            isVisited: true,
+            isDeleted: false
         ),
         Destination(
             city: "Kyoto",
@@ -37,7 +39,8 @@ struct Destination: Identifiable {
             review: 4,
             colorFrom: .green,
             colorTo: .cyan,
-            isVisited: false
+            isVisited: false,
+            isDeleted: false
         ),
         Destination(
             city: "Paris",
@@ -47,7 +50,8 @@ struct Destination: Identifiable {
             review: 3,
             colorFrom: .blue,
             colorTo: .purple,
-            isVisited: true
+            isVisited: true,
+            isDeleted: false
         ),
         Destination(
             city: "New York",
@@ -57,7 +61,8 @@ struct Destination: Identifiable {
             review: 5,
             colorFrom: .red,
             colorTo: .pink,
-            isVisited: true
+            isVisited: true,
+            isDeleted: false
         ),
         Destination(
             city: "Ankara",
@@ -67,7 +72,8 @@ struct Destination: Identifiable {
             review: 4,
             colorFrom: .red,
             colorTo: .pink,
-            isVisited: false
+            isVisited: false,
+            isDeleted: false
         ),
         Destination(
             city: "Bogota",
@@ -77,7 +83,8 @@ struct Destination: Identifiable {
             review: 5,
             colorFrom: .red,
             colorTo: .pink,
-            isVisited: false
+            isVisited: false,
+            isDeleted: false
         ),
         Destination(
             city: "Kiev",
@@ -87,7 +94,8 @@ struct Destination: Identifiable {
             review: 4,
             colorFrom: .red,
             colorTo: .pink,
-            isVisited: true
+            isVisited: true,
+            isDeleted: false
         ),
         Destination(
             city: "Ottawa",
@@ -97,7 +105,8 @@ struct Destination: Identifiable {
             review: 5,
             colorFrom: .red,
             colorTo: .pink,
-            isVisited: false
+            isVisited: false,
+            isDeleted: false
         ),
     ]
     
@@ -109,6 +118,7 @@ struct Destination: Identifiable {
         review: 5,
         colorFrom: .orange,
         colorTo: .pink,
-        isVisited: true
+        isVisited: true,
+        isDeleted: false
     )
 }

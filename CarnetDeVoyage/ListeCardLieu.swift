@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListeLieux: View {
+struct ListeCardLieu: View {
 
     var body: some View {
         ScrollView {
@@ -38,5 +38,5 @@ struct ListeLieux: View {
 }
 
 #Preview {
-    ListeLieux()
+    ListeCardLieu()
 }
