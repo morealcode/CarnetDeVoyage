@@ -59,6 +59,46 @@ struct Destination: Identifiable {
             colorTo: .pink,
             isVisited: true
         ),
+        Destination(
+            city: "Ankara",
+            pays: "Turquie",
+            icon: "star.fill",
+            image: "ankara",
+            review: 4,
+            colorFrom: .red,
+            colorTo: .pink,
+            isVisited: false
+        ),
+        Destination(
+            city: "Bogota",
+            pays: "Colombie",
+            icon: "star.fill",
+            image: "bogota",
+            review: 5,
+            colorFrom: .red,
+            colorTo: .pink,
+            isVisited: false
+        ),
+        Destination(
+            city: "Kiev",
+            pays: "Ukraine",
+            icon: "star.fill",
+            image: "kiev",
+            review: 4,
+            colorFrom: .red,
+            colorTo: .pink,
+            isVisited: true
+        ),
+        Destination(
+            city: "Ottawa",
+            pays: "Canada",
+            icon: "star.fill",
+            image: "ottawa",
+            review: 5,
+            colorFrom: .red,
+            colorTo: .pink,
+            isVisited: false
+        ),
     ]
     
     static let example = Destination(
