@@ -9,7 +9,70 @@ import SwiftUI
 
 struct SwiftUIView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        VStack{
+            VStack {
+
+                Spacer()
+                
+                Text("red")
+                    .padding()
+                    .background(.red, in: RoundedRectangle(cornerRadius: 12))
+                
+                Text("blue")
+                    .frame(width: 200)
+                    .padding()
+                    .background(.blue)
+                
+                Spacer()
+                
+            }
+            .padding()
+            .background(.yellow)
+            
+            HStack{
+                VStack {
+
+                    Spacer()
+                    
+                    Text("red")
+                        .padding()
+                        .background(.red)
+                    
+                    Text("blue")
+                        .padding()
+                        .background(.blue)
+                    
+                    Spacer()
+                    
+                }
+                .padding()
+                .background(.brown)
+                
+                Spacer()
+                
+                VStack {
+
+                    Spacer()
+                    
+                    Text("red")
+                        .padding()
+                        .background(.red)
+                    
+                    Text("blue")
+                        .padding()
+                        .background(.blue)
+                    
+                    Spacer()
+                    
+                }
+                .padding()
+                .background(.brown)
+            }
+            .background(.green)
+        }
+        .ignoresSafeArea()
+
     }
 }
 
