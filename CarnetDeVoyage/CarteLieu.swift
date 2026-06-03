@@ -16,8 +16,7 @@ struct CarteLieu: View {
                 
                 VStack {
                     Text("La carte d'un lieu")
-                        .font(.title2)
-                        .bold()
+                        .font(.title2.bold())
 
                     Text(
                         "Livrable du jour: une carte qui combine image cadrée, overlay (badge), Label, formes, étoiles, et tous les modifiers vus aujourd'hui"
