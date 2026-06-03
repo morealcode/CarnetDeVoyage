@@ -60,5 +60,15 @@ struct Destination: Identifiable {
             isVisited: true
         ),
     ]
-
+    
+    static let example = Destination(
+        city: "Lisbonne",
+        pays: "Portugal",
+        icon: "sun.max.fill",
+        image: "lisbonne",
+        review: 5,
+        colorFrom: .orange,
+        colorTo: .pink,
+        isVisited: true
+    )
 }

@@ -2,93 +2,72 @@
 //  CarteLieu.swift
 //  CarnetDeVoyage
 //
-//  Created by Alexis Morel on 02/06/2026.
+//  Created by apprenant130 on 03/06/2026.
 //
 
 import SwiftUI
 
 struct CarteLieu: View {
-
+    
+    let lieu: Destination
+    
     var body: some View {
-        ScrollView {
-            
-            VStack {
-                
-                VStack {
-                    Text("La carte d'un lieu")
-                        .font(.title2.bold())
-
-                    Text(
-                        "Livrable du jour: une carte qui combine image cadrée, overlay (badge), Label, formes, étoiles, et tous les modifiers vus aujourd'hui"
-                    )
-                    .padding(.vertical, 6)
-                    .foregroundStyle(.secondary)
-                }
-                .padding()
-
-                ForEach(Destination.examples) { destination in
-
-                    VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
 
 //                        Image(systemName: destination.icon)
-                        Image(destination.image)
-                            .resizable()
-                            .scaledToFill()
-                            .cardStyle()
-                            .background(
-                                LinearGradient(
-                                    colors: [destination.colorFrom, destination.colorTo],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .overlay(alignment: .topTrailing) {
-                                ZStack {
-                                    Label(
-                                        "Visité",
-                                        systemImage: "checkmark.circle.fill"
-                                    )
-                                    .foregroundStyle(.white)
-                                    .bold()
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 8)
-                                    .background(.green)
-                                }
-                                .clipShape(.rect(cornerRadius: 20))
-                                .padding(10)
-                                .opacity(destination.isVisited ? 100 : 0)
-                            }
-
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(destination.city)
-                                .font(.title2)
-                                .bold()
-                                .foregroundStyle(.white)
-
-                            Label(destination.pays, systemImage: "map")
-                                .foregroundStyle(.gray)
-                                .font(.body)
-
-                            HStack(spacing: 4) {
-                                ForEach(1...5, id:\.self) { index in
-                                    Image(systemName: index < destination.review ? "star.fill" : "star")
-                                        .foregroundStyle(.yellow)
-                                }
-                                .font(.caption)
-                            }
-                        }
-                        .padding(16)
-                    }
-                    .background(
-                        Color(red: 28 / 255, green: 28 / 255, blue: 30 / 255)
+            Image(lieu.image)
+                .resizable()
+                .scaledToFill()
+                .cardStyle()
+                .background(
+                    LinearGradient(
+                        colors: [lieu.colorFrom, lieu.colorTo],
+                        startPoint: .leading,
+                        endPoint: .trailing
                     )
-                    .clipShape(.rect(cornerRadius: 16))
-                    .padding()
+                )
+                .overlay(alignment: .topTrailing) {
+                    ZStack {
+                        Label(
+                            "Visité",
+                            systemImage: "checkmark.circle.fill"
+                        )
+                        .foregroundStyle(.white)
+                        .bold()
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(.green)
+                    }
+                    .clipShape(.rect(cornerRadius: 20))
+                    .padding(10)
+                    .opacity(lieu.isVisited ? 100 : 0)
+                }
 
+            VStack(alignment: .leading, spacing: 6) {
+                Text(lieu.city)
+                    .font(.title2)
+                    .bold()
+                    .foregroundStyle(.white)
+
+                Label(lieu.pays, systemImage: "map")
+                    .foregroundStyle(.gray)
+                    .font(.body)
+
+                HStack(spacing: 4) {
+                    ForEach(1...5, id:\.self) { index in
+                        Image(systemName: index < lieu.review ? "star.fill" : "star")
+                            .foregroundStyle(.yellow)
+                    }
+                    .font(.caption)
                 }
             }
+            .padding(16)
         }
-        .scrollIndicators(.hidden)
+        .background(
+            Color(red: 28 / 255, green: 28 / 255, blue: 30 / 255)
+        )
+        .clipShape(.rect(cornerRadius: 16))
+        .padding()
     }
 }
 
@@ -110,5 +89,5 @@ extension View {
 }
 
 #Preview {
-    CarteLieu()
+    CarteLieu(lieu: Destination.example)
 }
