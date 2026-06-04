@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DiscoverView: View {
     
+    /// Mettre le @State soit dans ContentView soit en Observable
     @State var placesNotVisited: [Place] = Place.examples.filter({ !$0.isVisited })
     
     var body: some View {
