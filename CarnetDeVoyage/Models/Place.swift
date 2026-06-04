@@ -66,8 +66,8 @@ struct Place: Identifiable, Hashable {
             image: "statue-liberte",
             review: 5,
             isLiked: true,
-            isVisited: false,
-            willVisit: true,
+            isVisited: true,
+            willVisit: false,
             tags: ["monument", "culture", "historical"],
             budget: 250
         ),
