@@ -22,6 +22,8 @@ struct Place: Identifiable, Hashable {
     var willVisit: Bool
     var tags: [String]
     var budget: Int
+    
+    static var continents: [String] = ["Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"]
 
     static let examples: [Place] = [
         Place(
