@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var places = Place.examples
+    
     var body: some View {
 
         TabView {
             Tab("Discover", systemImage: "map") {
                 NavigationStack {
-                    DiscoverView()
+                    DiscoverView(places: $places)
                 }
             }
 
@@ -35,6 +38,7 @@ struct ContentView: View {
                 }
             }
         }
+        .font(.system(.body, design: .rounded))
     }
 }
 

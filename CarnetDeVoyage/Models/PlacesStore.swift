@@ -5,6 +5,8 @@
 //  Created by apprenant130 on 06/06/2026.
 //
 
+/// This code was for testing purpose
+
 import SwiftUI
 
 @Observable class PlacesStore: Identifiable {
@@ -93,8 +95,8 @@ import SwiftUI
     func addPlace(_ newPlace: Place) {
         places.append(newPlace)
     }
-    
-    func updatePlace(_ updatedPlace: Place){
+
+    func updatePlace(_ updatedPlace: Place) {
         if let index = places.firstIndex(where: { $0.id == updatedPlace.id }) {
             places[index] = updatedPlace
         }

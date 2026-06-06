@@ -9,29 +9,143 @@ import SwiftUI
 
 struct DiscoverView: View {
 
-    @Environment(PlacesStore.self) private var placesStore
+    @Binding var places: [Place]
 
     var body: some View {
-        VStack {
-            HStack {
+        ScrollView {
+
+            VStack(alignment: .leading) {
                 Text("What's next 👀")
                     .font(.title)
                     .bold()
-                Spacer()
+                    .padding()
+
+                ScrollView(.horizontal) {
+                    HStack(spacing: 16) {
+                        
+                        ForEach(Place.continents, id: \.self) { continent in
+                            Button {
+                                print("Select", continent)
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Image(continent.lowercased())
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 40, height: 40)
+                                        .clipShape(Circle())
+
+                                    Text(continent)
+                                        .foregroundStyle(.black)
+                                        .padding(.trailing, 15)
+                                }
+                                .padding(3)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .fill(.white)
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .stroke(
+                                            .gray.opacity(0.5),
+                                            lineWidth: 1
+                                        )
+                                )
+                            }
+
+                        }
+                    }
+                    .padding()
+                }
+
+                Group {
+
+                    ForEach($places) { $place in
+
+                        VStack {
+
+                            HStack {
+                                HStack {
+                                    Image(systemName: "star.fill")
+                                        .foregroundStyle(.yellow)
+                                    Text("5.0")
+                                }
+                                .padding()
+                                .glassEffect()
+                                Spacer()
+                                Image(systemName: "heart.fill")
+                                    .foregroundStyle(.white)
+                                    .padding()
+                                    .glassEffect()
+                            }
+
+                            Spacer()
+
+                            HStack {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Label(
+                                        "\(place.city), \(place.pays)",
+                                        systemImage: "mappin.and.ellipse"
+                                    )
+                                    .bold()
+
+                                    Text(place.name)
+                                        .font(.title2)
+                                        .bold()
+                                }
+                                .foregroundStyle(.white)
+
+                                Spacer()
+
+                                Button(
+                                    "See details",
+                                    systemImage: "arrow.up.right",
+                                    action: {
+                                        print("Show details for", place.name)
+                                    }
+                                )
+                                .foregroundStyle(.primary)
+                                .labelStyle(.iconOnly)
+                                .padding()
+                                .glassEffect()
+
+                            }
+
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 270)
+                        .padding()
+                        .background(
+                            Image(place.image)
+                                .resizable()
+                                .scaledToFill()
+                                .overlay(
+                                    LinearGradient(
+                                        colors: [
+                                            .black.opacity(0),
+                                            .black.opacity(0.5),
+                                            .black.opacity(0.6),
+                                        ],
+                                        startPoint: .center,
+                                        endPoint: .bottom
+                                    )
+                                )
+
+                        )
+                        .clipShape(.rect(cornerRadius: 25))
+                    }
+
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 8)
             }
-
-            // Places not visited or not planned to visit
-            PlaceListView(places: placesStore.places.filter({ !$0.isVisited || !$0.willVisit }))
-
         }
-        .padding()
+        .scrollIndicators(.hidden)
     }
 }
 
 #Preview {
-    let store = PlacesStore()
+    @Previewable @State var places: [Place] = Place.examples
     NavigationStack {
-        DiscoverView()
-            .environment(store)
+        DiscoverView(places: $places)
     }
 }
