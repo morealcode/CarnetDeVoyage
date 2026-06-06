@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct DiscoverView: View {
-    
-    /// Mettre le @State soit dans ContentView soit en Observable
-    @State var placesNotVisited: [Place] = Place.examples.filter({ !$0.isVisited })
-    
+
+    @Environment(PlacesStore.self) private var placesStore
+
     var body: some View {
-        VStack{
-            HStack{
+        VStack {
+            HStack {
                 Text("What's next 👀")
                     .font(.title)
                     .bold()
                 Spacer()
             }
-            // .background(.red)
-            
-            PlaceListView(places: placesNotVisited)
-            
+
+            // Places not visited or not planned to visit
+            PlaceListView(places: placesStore.places.filter({ !$0.isVisited || !$0.willVisit }))
+
         }
         .padding()
     }
 }
 
 #Preview {
-    NavigationStack{
-        DiscoverView(placesNotVisited: Place.examples)
+    let store = PlacesStore()
+    NavigationStack {
+        DiscoverView()
+            .environment(store)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceListView: View {
 
-    @State var places: [Place]
+    let places: [Place]
 
     var body: some View {
         ScrollView {

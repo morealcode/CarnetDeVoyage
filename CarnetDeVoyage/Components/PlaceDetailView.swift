@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceDetailView: View {
     
-    @State var place: Place
+    let place: Place
     
     var body: some View {
         VStack{
