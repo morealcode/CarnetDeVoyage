@@ -8,42 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State private var places = Place.examples.filter({ !$0.isVisited && !$0.willVisit })
-    @State private var visitedPlaces = Place.examples.filter({ $0.isVisited })
-    @State private var plannedPlaces = Place.examples.filter({ $0.willVisit })
-    
+
+    @Environment(PlacesStore.self) private var placesStore
+
+    var newPlaces: [Place] {
+        placesStore.places.filter { !$0.isVisited && !$0.willVisit }
+    }
+
+    var visitedPlaces: [Place] {
+        placesStore.places.filter { $0.isVisited }
+    }
+
+    var plannedPlaces: [Place] {
+        placesStore.places.filter { $0.willVisit }
+    }
+
     var body: some View {
 
-        TabView {
-            Tab("Discover", systemImage: "map") {
-                NavigationStack {
-                    DiscoverView(places: $places)
+        NavigationStack {
+            TabView {
+                Tab("Discover", systemImage: "map") {
+                    DiscoverView(places: newPlaces)
                 }
-            }
 
-            Tab("Planning", systemImage: "calendar") {
-                NavigationStack {
-                    PlanningView(places: $visitedPlaces)
+                Tab("Planning", systemImage: "calendar") {
+                    PlanningView(places: plannedPlaces)
                 }
-            }
 
-            Tab("Memories", systemImage: "memories") {
-                NavigationStack {
-                    MemoriesView(places: $plannedPlaces)
+                Tab("Memories", systemImage: "memories") {
+                    MemoriesView(places: visitedPlaces)
                 }
-            }
 
-            Tab("Profile", systemImage: "person.fill") {
-                NavigationStack {
+                Tab("Profile", systemImage: "person.fill") {
                     ProfileView()
                 }
             }
+            .font(.system(.body, design: .rounded))
         }
-        .font(.system(.body, design: .rounded))
     }
 }
 
 #Preview {
     ContentView()
+        .environment(PlacesStore.preview)
 }

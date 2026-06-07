@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceDetailView: View {
 
-    @Binding var place: Place
+    var place: Place
     @State private var isShowingSheet: Bool = true
 
     var body: some View {
@@ -59,7 +59,7 @@ struct PlaceDetailView: View {
                 HStack {
 
                     Spacer()
-                    
+
                     // Add/Remove place from planning
                     Button(
                         place.willVisit ? "Planned" : "Not planned",
@@ -71,9 +71,9 @@ struct PlaceDetailView: View {
 
                     }
                     .buttonStyle(.glassProminent)
-                        .tint(place.willVisit ? .primary : .secondary)
-                        .controlSize(.large)
-                    
+                    .tint(place.willVisit ? .primary : .secondary)
+                    .controlSize(.large)
+
                     // Add/Remove place from memories
                     Button(
                         place.isVisited ? "Visited" : "Not visited",
@@ -85,9 +85,9 @@ struct PlaceDetailView: View {
 
                     }
                     .buttonStyle(.glassProminent)
-                        .tint(place.isVisited ? .primary : .secondary)
-                        .controlSize(.large)
-                    
+                    .tint(place.isVisited ? .primary : .secondary)
+                    .controlSize(.large)
+
                     Spacer()
 
                 }
@@ -114,8 +114,5 @@ struct PlaceDetailView: View {
 }
 
 #Preview {
-    @Previewable @State var place: Place = Place.example
-    NavigationStack {
-        PlaceDetailView(place: $place)
-    }
+    PlaceDetailView(place: PlacesStore.preview.places[0])
 }

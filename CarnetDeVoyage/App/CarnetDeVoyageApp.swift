@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CarnetDeVoyageApp: App {
+    @State private var placesStore: PlacesStore = PlacesStore()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(placesStore)
         }
     }
 }

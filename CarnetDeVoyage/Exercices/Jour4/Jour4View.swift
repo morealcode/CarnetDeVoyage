@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Jour4View: View {
 
-    @State var places: [Place] = Place.examples
+    @State var places: [PlaceStruct] = PlaceStruct.examples
     @State var isEditing: Bool = false
     @State var isSheetVisible: Bool = false
 
@@ -69,6 +69,6 @@ struct Jour4View: View {
 
 #Preview {
     NavigationStack {
-        Jour4View(places: Place.examples)
+        Jour4View(places: PlaceStruct.examples)
     }
 }

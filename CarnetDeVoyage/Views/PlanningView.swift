@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlanningView: View {
     
-    @Binding var places: [Place]
+    var places: [Place]
     
     var body: some View {
         VStack(alignment:.leading){
@@ -18,14 +18,14 @@ struct PlanningView: View {
                 .bold()
                 .padding()
 
-            PlacesView(places: $places)
+            PlacesView(places: places)
         }
     }
 }
 
 #Preview {
-    @Previewable @State var places: [Place] = Place.examples.filter({ $0.willVisit })
-    NavigationStack {
-        PlanningView(places: $places)
-    }
+//    @Previewable @State var places: [Place] = Place.examples.filter({ $0.willVisit })
+//    NavigationStack {
+//        PlanningView(places: $places)
+//    }
 }

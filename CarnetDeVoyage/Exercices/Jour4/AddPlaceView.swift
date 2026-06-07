@@ -10,7 +10,7 @@ import SwiftUI
 struct AddPlaceView: View {
 
     func addPlace() {
-        let newPlace: Place = Place(
+        let newPlace: PlaceStruct = PlaceStruct(
             name: name,
             resume: resume,
             city: city,
@@ -30,7 +30,7 @@ struct AddPlaceView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    @Binding var places: [Place]
+    @Binding var places: [PlaceStruct]
 
     @State private var name: String = "Simplon"
     @State private var resume: String = "Centre de formation"
@@ -56,7 +56,7 @@ struct AddPlaceView: View {
                     TextField("City", text: $city)
                     TextField("Pays", text: $pays)
                     Picker("Continent", selection: $continent) {
-                        ForEach(Place.continents, id: \.self) { continent in
+                        ForEach(PlaceStruct.continents, id: \.self) { continent in
                             Text(continent)
                         }
                     }
@@ -88,6 +88,6 @@ struct AddPlaceView: View {
 }
 
 #Preview {
-    @Previewable @State var places: [Place] = Place.examples
+    @Previewable @State var places: [PlaceStruct] = PlaceStruct.examples
     AddPlaceView(places: $places)
 }

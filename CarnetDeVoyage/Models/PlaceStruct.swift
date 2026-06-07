@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Observation
 
-struct Place: Identifiable, Hashable {
+struct PlaceStruct: Identifiable, Hashable {
 
     var id = UUID()
     var name: String
@@ -25,8 +26,8 @@ struct Place: Identifiable, Hashable {
     
     static var continents: [String] = ["Worldwide", "Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"]
 
-    static let examples: [Place] = [
-        Place(
+    static let examples: [PlaceStruct] = [
+        PlaceStruct(
             name: "Tour Eiffel",
             resume:
                 "La tour Eiffel est une tour autoportante de fer puddlé de 330 m de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7ᵉ arrondissement. Son adresse officielle est 5, avenue Anatole-France.",
@@ -42,7 +43,7 @@ struct Place: Identifiable, Hashable {
             budget: 200
         ),
 
-        Place(
+        PlaceStruct(
             name: "Colisée",
             resume:
                 "Le Colisée est un immense amphithéâtre antique situé au cœur de Rome. Construit au Ier siècle, il accueillait des combats de gladiateurs et reste aujourd’hui l’un des symboles les plus célèbres de l’Empire romain.",
@@ -58,7 +59,7 @@ struct Place: Identifiable, Hashable {
             budget: 150
         ),
 
-        Place(
+        PlaceStruct(
             name: "Statue de la Liberté",
             resume:
                 "La Statue de la Liberté est un monument emblématique situé sur Liberty Island à New York. Offerte par la France aux États-Unis en 1886, elle symbolise la liberté et la démocratie.",
@@ -74,7 +75,7 @@ struct Place: Identifiable, Hashable {
             budget: 250
         ),
 
-        Place(
+        PlaceStruct(
             name: "Machu Picchu",
             resume:
                 "Machu Picchu est une ancienne cité inca perchée dans les montagnes des Andes au Pérou. Redécouverte au début du XXe siècle, elle est aujourd’hui l’un des sites archéologiques les plus visités au monde.",
@@ -90,7 +91,7 @@ struct Place: Identifiable, Hashable {
             budget: 600
         ),
         
-        Place(
+        PlaceStruct(
             name: "Grande Muraille de Chine",
             resume:
                 "La Grande Muraille de Chine est une série de fortifications construites sur plusieurs siècles pour protéger les frontières du nord de la Chine impériale. Elle s’étend sur des milliers de kilomètres.",
@@ -107,7 +108,7 @@ struct Place: Identifiable, Hashable {
         ),
     ]
 
-    static let example: Place = Place(
+    static let example: PlaceStruct = PlaceStruct(
         name: "Tour Eiffel",
         resume:
             "La tour Eiffel est une tour autoportante de fer puddlé de 330 m de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7ᵉ arrondissement. Son adresse officielle est 5, avenue Anatole-France.",
@@ -122,4 +123,38 @@ struct Place: Identifiable, Hashable {
         tags: ["monument", "historical", "culture"],
         budget: 200
     )
+}
+
+let continentList: [String] = ["Worldwide", "Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"]
+
+@Observable
+class Place: Identifiable {
+    var id: UUID = UUID()
+    var name: String
+    var resume: String
+    var city: String
+    var pays: String
+    var continent: String
+    var image: String
+    var review: Int
+    var isLiked: Bool
+    var isVisited: Bool
+    var willVisit: Bool
+    var tags: [String]
+    var budget: Int
+    
+    init(name: String, resume: String, city: String, pays: String, continent: String, image: String, review: Int, isLiked: Bool, isVisited: Bool, willVisit: Bool, tags: [String], budget: Int) {
+        self.name = name
+        self.resume = resume
+        self.city = city
+        self.pays = pays
+        self.continent = continent
+        self.image = image
+        self.review = review
+        self.isLiked = isLiked
+        self.isVisited = isVisited
+        self.willVisit = willVisit
+        self.tags = tags
+        self.budget = budget
+    }
 }

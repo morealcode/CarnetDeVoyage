@@ -6,10 +6,11 @@
 //
 
 /// This code was for testing purpose
-
 import SwiftUI
+import Observation
 
-@Observable class PlacesStore: Identifiable {
+@Observable
+class PlacesStore: Identifiable {
     var places: [Place] = [
         Place(
             name: "Tour Eiffel",
@@ -49,11 +50,11 @@ import SwiftUI
                 "La Statue de la Liberté est un monument emblématique situé sur Liberty Island à New York. Offerte par la France aux États-Unis en 1886, elle symbolise la liberté et la démocratie.",
             city: "New York",
             pays: "États-Unis",
-            continent: "Amérique du Nord",
+            continent: "North America",
             image: "statue-liberte",
             review: 5,
             isLiked: true,
-            isVisited: true,
+            isVisited: false,
             willVisit: false,
             tags: ["monument", "culture", "historical"],
             budget: 250
@@ -65,7 +66,7 @@ import SwiftUI
                 "Machu Picchu est une ancienne cité inca perchée dans les montagnes des Andes au Pérou. Redécouverte au début du XXe siècle, elle est aujourd’hui l’un des sites archéologiques les plus visités au monde.",
             city: "Cusco",
             pays: "Pérou",
-            continent: "Amérique du Sud",
+            continent: "North America",
             image: "machu-picchu",
             review: 5,
             isLiked: false,
@@ -81,7 +82,7 @@ import SwiftUI
                 "La Grande Muraille de Chine est une série de fortifications construites sur plusieurs siècles pour protéger les frontières du nord de la Chine impériale. Elle s’étend sur des milliers de kilomètres.",
             city: "Pékin",
             pays: "Chine",
-            continent: "Asie",
+            continent: "Asia",
             image: "grande-muraille",
             review: 5,
             isLiked: true,
@@ -96,17 +97,12 @@ import SwiftUI
         places.append(newPlace)
     }
 
-    func updatePlace(_ updatedPlace: Place) {
-        if let index = places.firstIndex(where: { $0.id == updatedPlace.id }) {
-            places[index] = updatedPlace
-        }
+    func deletePlace(_ place: Place) {
+        places.removeAll { $0.id == place.id }
     }
+}
 
-    func removePlace(at offsets: IndexSet) {
-        places.remove(atOffsets: offsets)
-    }
-
-    // Preview
+extension PlacesStore {
     static var preview: PlacesStore {
         let store = PlacesStore()
         return store
