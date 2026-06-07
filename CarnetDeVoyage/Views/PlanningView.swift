@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct PlanningView: View {
+    
+    @Binding var places: [Place]
+    
     var body: some View {
-        Text("Your next trip ✈️")
-            .font(.title)
-            .bold()
+        VStack(alignment:.leading){
+            Text("Your next trip ✈️")
+                .font(.title)
+                .bold()
+                .padding()
+
+            PlacesView(places: $places)
+        }
     }
 }
 
 #Preview {
-    PlanningView()
+    @Previewable @State var places: [Place] = Place.examples.filter({ $0.willVisit })
+    NavigationStack {
+        PlanningView(places: $places)
+    }
 }

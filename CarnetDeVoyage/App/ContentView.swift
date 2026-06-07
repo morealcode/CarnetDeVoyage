@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var places = Place.examples
+    @State private var places = Place.examples.filter({ !$0.isVisited && !$0.willVisit })
+    @State private var visitedPlaces = Place.examples.filter({ $0.isVisited })
+    @State private var plannedPlaces = Place.examples.filter({ $0.willVisit })
     
     var body: some View {
 
@@ -22,13 +24,13 @@ struct ContentView: View {
 
             Tab("Planning", systemImage: "calendar") {
                 NavigationStack {
-                    PlanningView()
+                    PlanningView(places: $visitedPlaces)
                 }
             }
 
             Tab("Memories", systemImage: "memories") {
                 NavigationStack {
-                    MemoriesView()
+                    MemoriesView(places: $plannedPlaces)
                 }
             }
 

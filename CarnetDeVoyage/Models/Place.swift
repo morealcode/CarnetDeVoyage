@@ -36,7 +36,7 @@ struct Place: Identifiable, Hashable {
             image: "tour-eiffel",
             review: 4,
             isLiked: false,
-            isVisited: true,
+            isVisited: false,
             willVisit: false,
             tags: ["monument", "historical", "culture"],
             budget: 200
@@ -68,7 +68,7 @@ struct Place: Identifiable, Hashable {
             image: "statue-liberte",
             review: 5,
             isLiked: true,
-            isVisited: true,
+            isVisited: false,
             willVisit: false,
             tags: ["monument", "culture", "historical"],
             budget: 250
@@ -84,7 +84,7 @@ struct Place: Identifiable, Hashable {
             image: "machu-picchu",
             review: 5,
             isLiked: false,
-            isVisited: false,
+            isVisited: true,
             willVisit: true,
             tags: ["historical", "nature", "adventure"],
             budget: 600
@@ -100,7 +100,7 @@ struct Place: Identifiable, Hashable {
             image: "grande-muraille",
             review: 5,
             isLiked: true,
-            isVisited: false,
+            isVisited: true,
             willVisit: true,
             tags: ["monument", "historical", "culture"],
             budget: 500

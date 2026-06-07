@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct MemoriesView: View {
+    
+    @Binding var places: [Place]
+    
     var body: some View {
-        Text("Remember good times ✨")
-            .font(.title)
-            .bold()
+        VStack(alignment:.leading){
+            Text("Remember good times ✨")
+                .font(.title)
+                .bold()
+                .padding()
+
+            PlacesView(places: $places)
+        }
     }
 }
 
 #Preview {
-    MemoriesView()
+    @Previewable @State var places: [Place] = Place.examples.filter({ $0.isVisited })
+    NavigationStack {
+        MemoriesView(places: $places)
+    }
 }
