@@ -10,6 +10,7 @@ import SwiftUI
 struct DiscoverView: View {
 
     @Binding var places: [Place]
+    @State var selectedContinent: String = "Worldwide"
 
     var body: some View {
         NavigationStack{
@@ -27,6 +28,9 @@ struct DiscoverView: View {
                             ForEach(Place.continents, id: \.self) { continent in
                                 Button {
                                     print("Select", continent)
+                                    withAnimation{
+                                        selectedContinent = continent
+                                    }
                                 } label: {
                                     HStack(spacing: 8) {
                                         Image(continent.lowercased())
@@ -47,8 +51,8 @@ struct DiscoverView: View {
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 30)
                                             .stroke(
-                                                .gray.opacity(0.3),
-                                                lineWidth: 1
+                                                .black.opacity(continent == selectedContinent ? 1 : 0.3),
+                                                lineWidth: continent == selectedContinent ? 1.5 : 1
                                             )
                                     )
                                 }
@@ -62,78 +66,83 @@ struct DiscoverView: View {
 
                         ForEach($places) { $place in
 
-                            VStack {
+                            if selectedContinent == "Worldwide" || place.continent == selectedContinent {
+                            
+                                VStack {
 
-                                HStack {
                                     HStack {
-                                        Image(systemName: "star.fill")
-                                            .foregroundStyle(.yellow)
-                                        Text(String(place.review))
+                                        HStack {
+                                            Image(systemName: "star.fill")
+                                                .foregroundStyle(.yellow)
+                                            Text(String(place.review))
+                                        }
+                                        .padding()
+                                        .glassEffect()
+                                        Spacer()
+                                            
+                                        Button("Like", systemImage: "heart.fill", action: {
+                                            place.isLiked.toggle()
+                                        })
+                                        .padding()
+                                        .labelStyle(.iconOnly)
+                                        .foregroundStyle(place.isLiked ? .red : .white)
+                                        .glassEffect()
                                     }
-                                    .padding()
-                                    .glassEffect()
+
                                     Spacer()
-                                        
-                                    Button("Like", systemImage: "heart.fill", action: {
-                                        place.isLiked.toggle()
-                                    })
-                                    .padding()
-                                    .labelStyle(.iconOnly)
-                                    .foregroundStyle(place.isLiked ? .red : .white)
-                                    .glassEffect()
-                                }
 
-                                Spacer()
-
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        Label(
-                                            "\(place.city), \(place.pays)",
-                                            systemImage: "mappin.and.ellipse"
-                                        )
-                                        .bold()
-
-                                        Text(place.name)
-                                            .font(.title2)
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            Label(
+                                                "\(place.city), \(place.pays)",
+                                                systemImage: "mappin.and.ellipse"
+                                            )
                                             .bold()
-                                    }
-                                    .foregroundStyle(.white)
 
-                                    Spacer()
-                                    
-                                    NavigationLink {
-                                        PlaceDetailView(place: $place)
-                                    } label: {
-                                        Image(systemName: "arrow.up.right")
+                                            Text(place.name)
+                                                .font(.title2)
+                                                .bold()
+                                        }
+                                        .foregroundStyle(.white)
+
+                                        Spacer()
+                                        
+                                        NavigationLink {
+                                            PlaceDetailView(place: $place)
+                                        } label: {
+                                            Image(systemName: "arrow.up.right")
+                                        }
+                                        .padding()
+                                        .glassEffect()
+                                        .foregroundStyle(.primary)
+
                                     }
-                                    .padding()
-                                    .glassEffect()
-                                    .foregroundStyle(.primary)
 
                                 }
-
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 270)
-                            .padding()
-                            .background(
-                                Image(place.image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .overlay(
-                                        LinearGradient(
-                                            colors: [
-                                                .black.opacity(0),
-                                                .black.opacity(0.5),
-                                                .black.opacity(0.6),
-                                            ],
-                                            startPoint: .center,
-                                            endPoint: .bottom
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 270)
+                                .padding()
+                                .background(
+                                    Image(place.image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .overlay(
+                                            LinearGradient(
+                                                colors: [
+                                                    .black.opacity(0),
+                                                    .black.opacity(0.5),
+                                                    .black.opacity(0.6),
+                                                ],
+                                                startPoint: .center,
+                                                endPoint: .bottom
+                                            )
                                         )
-                                    )
 
-                            )
-                            .clipShape(.rect(cornerRadius: 25))
+                                )
+                                .clipShape(.rect(cornerRadius: 25))
+                                
+                            }
+                            
                         }
 
                     }
