@@ -79,7 +79,7 @@ struct PlacesView: View {
                                 HStack {
                                     Image(systemName: "star.fill")
                                         .foregroundStyle(.yellow)
-                                    Text(String(place.review))
+                                    Text(String((place.review)))
                                 }
                                 .padding()
                                 .glassEffect()
@@ -164,5 +164,6 @@ struct PlacesView: View {
 #Preview {
     NavigationStack {
         PlacesView(places: PlacesStore.preview.places)
+            .environment(PlacesStore.preview)
     }
 }

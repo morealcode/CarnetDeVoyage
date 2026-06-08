@@ -24,8 +24,8 @@ struct PlanningView: View {
 }
 
 #Preview {
-//    @Previewable @State var places: [Place] = Place.examples.filter({ $0.willVisit })
-//    NavigationStack {
-//        PlanningView(places: $places)
-//    }
+    NavigationStack {
+        PlanningView(places: PlacesStore.preview.places)
+            .environment(PlacesStore.preview)
+    }
 }

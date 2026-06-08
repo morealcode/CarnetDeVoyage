@@ -136,14 +136,14 @@ class Place: Identifiable {
     var pays: String
     var continent: String
     var image: String
-    var review: Int
+    var review: Double
     var isLiked: Bool
     var isVisited: Bool
     var willVisit: Bool
     var tags: [String]
-    var budget: Int
+    var budget: Double
     
-    init(name: String, resume: String, city: String, pays: String, continent: String, image: String, review: Int, isLiked: Bool, isVisited: Bool, willVisit: Bool, tags: [String], budget: Int) {
+    init(name: String, resume: String, city: String, pays: String, continent: String, image: String, review: Double, isLiked: Bool, isVisited: Bool, willVisit: Bool, tags: [String], budget: Double) {
         self.name = name
         self.resume = resume
         self.city = city

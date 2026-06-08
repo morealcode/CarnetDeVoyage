@@ -92,6 +92,10 @@ class PlacesStore: Identifiable {
             budget: 500
         ),
     ]
+    
+    let continents: [String] = ["Worldwide", "Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"]
+    
+    var search: String = ""
 
     func addPlace(_ newPlace: Place) {
         places.append(newPlace)

@@ -25,7 +25,7 @@ struct PlaceDetailView: View {
                         .font(.title)
                         .bold()
                     Spacer()
-                    Text("\(place.budget) €")
+                    Text("\(Int(place.budget)) €")
                         .font(.title2)
                         .bold()
                 }

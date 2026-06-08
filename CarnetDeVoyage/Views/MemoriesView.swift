@@ -24,8 +24,8 @@ struct MemoriesView: View {
 }
 
 #Preview {
-//    @Previewable @State var places: [Place] = Place.examples.filter({ $0.isVisited })
-//    NavigationStack {
-//        MemoriesView(places: $places)
-//    }
+    NavigationStack {
+        MemoriesView(places: PlacesStore.preview.places)
+            .environment(PlacesStore.preview)
+    }
 }

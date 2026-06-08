@@ -25,6 +25,7 @@ struct DiscoverView: View {
 
 #Preview {
     NavigationStack {
-        PlacesView(places: PlacesStore.preview.places)
+        DiscoverView(places: PlacesStore.preview.places)
+            .environment(PlacesStore.preview)
     }
 }
