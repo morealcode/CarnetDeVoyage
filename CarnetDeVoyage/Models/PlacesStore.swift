@@ -97,8 +97,8 @@ class PlacesStore: Identifiable {
         places.append(newPlace)
     }
 
-    func deletePlace(_ place: Place) {
-        places.removeAll { $0.id == place.id }
+    func deletePlace(_ id: UUID) {
+        places.removeAll { $0.id == id }
     }
 }
 

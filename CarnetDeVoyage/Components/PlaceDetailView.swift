@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct PlaceDetailView: View {
+    
+    @Environment(PlacesStore.self) private var placesStore
 
     var place: Place
+    
     @State private var isShowingSheet: Bool = true
 
     var body: some View {
@@ -110,9 +113,21 @@ struct PlaceDetailView: View {
                 .scaledToFill()
                 .ignoresSafeArea(edges: .top)
         )
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Delete", systemImage: "delete", action: {
+                    print("Detele place")
+                    // Faire fonction delete
+                    placesStore.deletePlace(place.id)
+                })
+            }
+        }
     }
 }
 
 #Preview {
-    PlaceDetailView(place: PlacesStore.preview.places[0])
+    NavigationStack{
+        PlaceDetailView(place: PlacesStore.preview.places[0])
+            .environment(PlacesStore.preview)
+    }
 }
