@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct PlaceDetailView: View {
-    
+
     @Environment(PlacesStore.self) private var placesStore
 
     var place: Place
-    
+
     @State private var isShowingSheet: Bool = true
+    @State private var showingAlert: Bool = false
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -115,18 +116,33 @@ struct PlaceDetailView: View {
         )
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Delete", systemImage: "delete", action: {
-                    print("Detele place")
-                    // Faire fonction delete
-                    placesStore.deletePlace(place.id)
-                })
+                Button(
+                    "Delete",
+                    systemImage: "delete",
+                    action: {
+                        print(showingAlert)
+                        showingAlert.toggle()
+                        print(showingAlert)
+                    }
+                )
+                .alert("Are you sure you want to delete this place ?", isPresented: $showingAlert) {
+                    
+                    Button("Delete", role: .destructive){
+                        print("Delete place:", place.name)
+                        placesStore.deletePlace(place.id)
+                    }
+                    
+                    Button("Cancel", role: .cancel) {
+                        print("Cancelled deletion")
+                    }
+                }
             }
         }
     }
 }
 
 #Preview {
-    NavigationStack{
+    NavigationStack {
         PlaceDetailView(place: PlacesStore.preview.places[0])
             .environment(PlacesStore.preview)
     }
