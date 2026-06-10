@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
 
                 Tab("Profile", systemImage: "person.fill") {
-                    ProfileView(toDiscover: newPlaces.count, toVisit: visitedPlaces.count, visited: visitedPlaces.count)
+                    ProfileView(toDiscover: newPlaces.count, toVisit: plannedPlaces.count, visited: visitedPlaces.count)
                 }
             }
             .font(.system(.body, design: .rounded))
@@ -81,7 +81,7 @@ struct AddPlace: View {
     @State var city: String = ""
     @State var pays: String = ""
     @State var continent: String = "Europe"
-    @State var image: String = "tour-eiffel"
+    @State var image: String = "worldwide"
 
     @State var review: Double = 1
 

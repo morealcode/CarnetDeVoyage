@@ -119,7 +119,7 @@ struct PlaceDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(
                     "Delete",
-                    systemImage: "delete",
+                    systemImage: "trash",
                     action: {
                         print(showingAlert)
                         showingAlert.toggle()
