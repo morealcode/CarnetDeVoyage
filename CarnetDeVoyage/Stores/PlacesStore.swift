@@ -5,9 +5,8 @@
 //  Created by apprenant130 on 06/06/2026.
 //
 
-/// This code was for testing purpose
-import SwiftUI
 import Observation
+import SwiftUI
 
 @Observable
 class PlacesStore: Identifiable {
@@ -92,10 +91,17 @@ class PlacesStore: Identifiable {
             budget: 500
         ),
     ]
-    
-    let continents: [String] = ["Worldwide", "Asia", "Africa", "North America", "South America", "Antarctica", "Europe", "Australia"]
-    
+
+    let continents: [String] = [
+        "Worldwide", "Asia", "Africa", "North America", "South America",
+        "Antarctica", "Europe", "Australia",
+    ]
+
     var search: String = ""
+
+    func findPlace(id: UUID) -> Place? {
+        places.first { $0.id == id }
+    }
 
     func addPlace(_ newPlace: Place) {
         places.append(newPlace)

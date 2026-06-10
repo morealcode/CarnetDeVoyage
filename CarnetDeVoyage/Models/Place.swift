@@ -10,7 +10,7 @@ import Observation
 
 @Observable
 class Place: Identifiable {
-    var id: UUID = UUID()
+    let id: UUID = UUID()
     var name: String
     var resume: String
     var city: String

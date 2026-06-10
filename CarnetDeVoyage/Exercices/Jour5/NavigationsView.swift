@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-enum Route: Hashable {
+enum RouteExo: Hashable {
     case detail(String)
     case tous
 }
 
 @Observable
-final class Router {
+final class RouterExo {
     var path = NavigationPath()
     var sports: [String] = [
         "Basketball", "Football", "Tennis", "Volleyball",
     ]
 
-    func push(_ route: Route) {
+    func push(_ route: RouteExo) {
         path.append(route)
     }
 
@@ -37,7 +37,7 @@ final class Router {
 struct NavigationsView: View {
 
     // @State private var path = NavigationPath()
-    @State private var router: Router = Router()
+    @State private var router: RouterExo = RouterExo()
     @State private var isSheetVisible: Bool = false
     @State private var sports: [String] = [
         "Basketball", "Football", "Tennis", "Volleyball",
@@ -81,7 +81,7 @@ struct NavigationsView: View {
 //            .navigationDestination(for: String.self) { sport in
 //                DetailSport(sport: sport)
 //            }
-            .navigationDestination(for: Route.self) { route in
+            .navigationDestination(for: RouteExo.self) { route in
 
                 switch route {
                 case .detail(let sport):
@@ -113,7 +113,7 @@ struct NavigationsView: View {
 
 struct DetailSport: View {
     
-    @Environment(Router.self) private var router
+    @Environment(RouterExo.self) private var router
 
     let sport: String
 

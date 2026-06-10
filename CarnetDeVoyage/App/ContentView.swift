@@ -16,7 +16,7 @@ struct ContentView: View {
     var newPlaces: [Place] {
         placesStore.places.filter { !$0.isVisited && !$0.willVisit }
     }
-
+    
     var visitedPlaces: [Place] {
         placesStore.places.filter { $0.isVisited }
     }
@@ -27,7 +27,7 @@ struct ContentView: View {
 
     var body: some View {
 
-        NavigationStack {
+        NavigationStack() {
             TabView {
                 Tab("Discover", systemImage: "map") {
                     DiscoverView(places: newPlaces)
@@ -35,10 +35,12 @@ struct ContentView: View {
 
                 Tab("Planning", systemImage: "calendar") {
                     PlanningView(places: plannedPlaces)
+                    
                 }
 
                 Tab("Memories", systemImage: "memories") {
                     MemoriesView(places: visitedPlaces)
+                    
                 }
 
                 Tab("Profile", systemImage: "person.fill") {

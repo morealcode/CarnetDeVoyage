@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaceDetailView: View {
 
+    @Environment(\.dismiss) private var dismiss
     @Environment(PlacesStore.self) private var placesStore
 
     var place: Place
@@ -125,13 +126,17 @@ struct PlaceDetailView: View {
                         print(showingAlert)
                     }
                 )
-                .alert("Are you sure you want to delete this place ?", isPresented: $showingAlert) {
-                    
-                    Button("Delete", role: .destructive){
+                .alert(
+                    "Are you sure you want to delete this place ?",
+                    isPresented: $showingAlert
+                ) {
+
+                    Button("Delete", role: .destructive) {
                         print("Delete place:", place.name)
                         placesStore.deletePlace(place.id)
+                        dismiss()
                     }
-                    
+
                     Button("Cancel", role: .cancel) {
                         print("Cancelled deletion")
                     }
@@ -142,7 +147,7 @@ struct PlaceDetailView: View {
 }
 
 #Preview {
-    NavigationStack {
+    NavigationStack() {
         PlaceDetailView(place: PlacesStore.preview.places[0])
             .environment(PlacesStore.preview)
     }

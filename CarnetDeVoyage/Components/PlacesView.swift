@@ -116,6 +116,7 @@ struct PlacesView: View {
 
                                 Spacer()
 
+                                
                                 NavigationLink {
                                     PlaceDetailView(place: place)
                                 } label: {
@@ -155,14 +156,19 @@ struct PlacesView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 8)
+                
+                
+                
             }
+            
+            
         }
         .scrollIndicators(.hidden)
     }
 }
 
 #Preview {
-    NavigationStack {
+    NavigationStack() {
         PlacesView(places: PlacesStore.preview.places)
             .environment(PlacesStore.preview)
     }
