@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
 
                 Tab("Profile", systemImage: "person.fill") {
-                    ProfileView()
+                    ProfileView(toDiscover: newPlaces.count, toVisit: visitedPlaces.count, visited: visitedPlaces.count)
                 }
             }
             .font(.system(.body, design: .rounded))
