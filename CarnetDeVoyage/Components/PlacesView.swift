@@ -9,7 +9,13 @@ import SwiftUI
 
 struct PlacesView: View {
 
+    @Environment(PlacesStore.self) private var placesStore
+    
+    @State private var isSheetVisible: Bool = false
+    
+    let title: String
     var places: [Place]
+    
     @State var selectedContinent: String = "Worldwide"
 
     var placesFiltered: [Place] {
@@ -164,12 +170,29 @@ struct PlacesView: View {
             
         }
         .scrollIndicators(.hidden)
+        .navigationTitle("What's next 👀")
+        .toolbar {
+            ToolbarItem(
+                placement: .topBarTrailing,
+                content: {
+                    Button("Add place", systemImage: "plus") {
+                        print("Open sheet")
+                        isSheetVisible.toggle()
+                    }
+                }
+            )
+        }
+        .sheet(isPresented: $isSheetVisible) {
+            AddPlace { newPlace in
+                placesStore.addPlace(newPlace)
+            }
+        }
     }
 }
 
 #Preview {
     NavigationStack() {
-        PlacesView(places: PlacesStore.preview.places)
+        PlacesView(title: "What's next 👀", places: PlacesStore.preview.places)
             .environment(PlacesStore.preview)
     }
 }

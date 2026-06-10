@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct PlanningView: View {
-    
-    var places: [Place]
-    
-    var body: some View {
-        VStack(alignment:.leading){
-            Text("Your next trip ✈️")
-                .font(.title)
-                .bold()
-                .padding()
 
-            PlacesView(places: places)
-        }
+    var places: [Place]
+
+    var body: some View {
+
+        PlacesView(title: "Your next trip ✈️", places: places)
+
     }
 }
 

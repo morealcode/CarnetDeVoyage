@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct DiscoverView: View {
-    
-    var places: [Place]
-    
-    var body: some View {
-        VStack(alignment:.leading){
-            Text("What's next 👀")
-                .font(.title)
-                .bold()
-                .padding()
 
-            PlacesView(places: places)
-        }
+    var places: [Place]
+
+    var body: some View {
+
+        PlacesView(title: "What's next 👀", places: places)
+
     }
 }
 

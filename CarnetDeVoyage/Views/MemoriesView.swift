@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct MemoriesView: View {
-    
-    var places: [Place]
-    
-    var body: some View {
-        VStack(alignment:.leading){
-            Text("Remember good times ✨")
-                .font(.title)
-                .bold()
-                .padding()
 
-            PlacesView(places: places)
-        }
+    var places: [Place]
+
+    var body: some View {
+
+        PlacesView(title: "Remember good times ✨", places: places)
+
     }
 }
 
